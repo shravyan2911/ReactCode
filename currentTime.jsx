@@ -3,14 +3,17 @@ const numbers = [{"startTime":0,"endTime":236,"daysOfWeekOpen":[1,2,3,4],"menu":
 
 let currentTime = new Date().getMinutes()+new Date().getHours()*60;
 let currentDay = new Date().getDay();
+// numbers.map() takes value from an array and convert into another array.
 let number = numbers.map((data)=>{
   		if(data.startTime<=currentTime&&data.endTime>=currentTime&&data.daysOfWeekOpen.indexOf(currentDay)!=-1){
   				return data.menu;
-  		}
+  		} 
   		else {
   			return "...."
   		}
 });
+
+// Clock Class Extends React Component where we set the state for the  date 
 class Clock extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +21,7 @@ class Clock extends React.Component {
   }
   
   	
-
+// It calls as soon as render function is called, where generally timers can be set.
   componentDidMount() {
     this.timerID = setInterval(
       () => this.getCurrentTime(),
@@ -31,7 +34,8 @@ class Clock extends React.Component {
       date: new Date()
     });
   }
-
+  
+//This function renders the React code into HTML, that returns needed component markups.
   render() {
     return (
       <div>
